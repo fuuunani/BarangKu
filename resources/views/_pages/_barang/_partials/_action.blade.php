@@ -1,0 +1,1 @@
+<button class="btn btn-xs btn-edit btn-warning" onclick="editForm('{{ $url_edit }}')"><b>Edit</b></button> <button class="btn btn-xs btn-delete btn-danger" onclick="removeData('{{ $url_destroy }}')"><b>Hapus</b></a>
