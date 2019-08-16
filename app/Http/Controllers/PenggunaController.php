@@ -24,7 +24,7 @@ class PenggunaController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,['nama'=>'required','email'=>'required|email|unique:tb_pengguna,email','password'=>'required|size:7']);$store=Pengguna::create(['usaha'=>session()->get('usaha'),'nama'=>$request->nama,'email'=>$request->email,'password'=>$request->password,'akses'=>$request->akses,]);return $store;
+        $this->validate($request,['nama'=>'required','email'=>'required|email|unique:tb_pengguna,email','password'=>'required|min:7']);$store=Pengguna::create(['usaha'=>session()->get('usaha'),'nama'=>$request->nama,'email'=>$request->email,'password'=>$request->password,'akses'=>$request->akses,]);return $store;
     }
 
     /**
@@ -45,7 +45,7 @@ class PenggunaController extends Controller
 
     public function update(Request $request, Pengguna $pengguna)
     {
-        $this->validate($request,['nama'=>'required','email'=>'required|email|unique:tb_pengguna,email,'.$pengguna->kode.',kode','password'=>'required|size:7']);$pengguna->nama=$request->nama;$pengguna->email=$request->email;$pengguna->password=$request->password;$pengguna->akses=$request->akses;$pengguna->update();return $pengguna;
+        $this->validate($request,['nama'=>'required','email'=>'required|email|unique:tb_pengguna,email,'.$pengguna->kode.',kode','password'=>'required|min:7']);$pengguna->nama=$request->nama;$pengguna->email=$request->email;$pengguna->password=$request->password;$pengguna->akses=$request->akses;$pengguna->update();return $pengguna;
     }
 
     public function destroy(Pengguna $pengguna)
