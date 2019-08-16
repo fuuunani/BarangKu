@@ -42,7 +42,7 @@ class DefaultController extends Controller
         $this->validate($request, [
             'nama' => 'required',
             'email' => 'required|email|unique:tb_pengguna,email,'.session()->get('kode').',kode',
-            'password' => 'required|size:7',
+            'password' => 'required|min:7',
             'nama_usaha' => 'required|unique:tb_usaha,nama,'.session()->get('usaha').',kode',
         ]);
         $sum_date=(date('Y')+date('m'))+date('d');
@@ -74,7 +74,7 @@ class DefaultController extends Controller
 
     public function profileUpdate(Request $request)
     {
-        $this->validate($request,['nama'=>'required','email'=>'required|email|unique:tb_pengguna,email,'.session()->get('kode').',kode','password'=>'required|size:7','nama_usaha'=>'required','alamat_usaha'=>'required','email_usaha'=>'required|email|unique:tb_usaha,email,'.session()->get('usaha').',kode','telp_usaha'=>'required']);
+        $this->validate($request,['nama'=>'required','email'=>'required|email|unique:tb_pengguna,email,'.session()->get('kode').',kode','password'=>'required|min:7','nama_usaha'=>'required','alamat_usaha'=>'required','email_usaha'=>'required|email|unique:tb_usaha,email,'.session()->get('usaha').',kode','telp_usaha'=>'required']);
         $pengguna = \DB::table('tb_pengguna')->where('kode', session()->get('kode'))->update(['nama' => $request->nama, 'email' => $request->email, 'password' => $request->password]);
         session()->put('kode', session()->get('kode'));
         session()->put('usaha', session()->get('usaha'));
